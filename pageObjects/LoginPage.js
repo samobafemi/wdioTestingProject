@@ -23,7 +23,7 @@ class LoginPage extends BasePage {
         return $('#welcome')
     }
     getLogOutButton() {
-        return $('//a[text()="Logout"]')
+        return $('[href="/index.php/auth/logout"]')
     }
     visit(){
         super.visit('./')
@@ -46,8 +46,6 @@ class LoginPage extends BasePage {
        
 
     }
-   
-
     
 }
     

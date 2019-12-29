@@ -1,0 +1,43 @@
+describe('Homepage', function () { });
+it('should load properly', function () { })
+$('=the text to search by') using link text as a selector
+if (browser.getUrl() !== 'https://demo.learnwebdriverio.com/login') {
+throw new Error('URL of "login" page should be correct')
+}
+
+<ul class="items" dropdown-menu id="main-menu">
+<li class="item">
+<a ng-click="showProjects()">
+Projects
+<span class="icon"></span>
+</a>
+</li>
+<li class="item">
+<a ng-click="showArchive()">
+Archive
+<span class="icon"></span>
+</a>
+
+
+If we use $$('li'), we’ll get an array with two elements in it. We can use JavaScript array syntax
+to select the second one: $$('li')[1]
+
+Link text selectors and partial link text selectors are also pretty simple. To get the first link, we could
+do $('=Projects'). To get the second li using a partial link text selector, we can do $('*=chive').
+
+To use a CSS selector in WebdriverIO, just pass it into the $ or $$
+function. Here’s one that grabs the ul by class name: $('ul.items'), and one that grabs the two
+li’s by class as well: $$('li.item').
+
+Using CSS Attribute Selectors, we can target the ng-click attribute of the link,
+like so:
+$("[ng-click='showProjects()']");
+$("[dropdown-menu] a[ng-click='showProjects()']");
+
+The first-child selector allows us to do this:
+$("li:first-child"); too broad we can narrow it down with this:
+$("[dropdown-menu] li:first-child");
+
+What if we wanted to get the second child? We can use The nth-child selector:
+$("[dropdown-menu] li:nth-child(2)"); nth-child takes a numeric value,
+which corresponds to the position in the HTML (it is not zeroindexed, so counting starts at 1).
