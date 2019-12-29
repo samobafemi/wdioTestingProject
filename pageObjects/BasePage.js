@@ -14,8 +14,14 @@ class BasePage {
     quit() {
         return browser.closeApp()
     }
-    reloadNewSession() {
+    openNewBrowser() {
         return browser.reloadSession()
+    }
+    getMetadata() {
+        return {
+            url: this.getUrl(),
+            title: this.getTitle()
+        }
     }
 }
 module.exports = BasePage

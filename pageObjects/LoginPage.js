@@ -23,10 +23,10 @@ class LoginPage extends BasePage {
         return $('#welcome')
     }
     getLogOutButton() {
-        return $('#welcome-menu > ul > li:nth-child(2) > a')
+        return $('//a[text()="Logout"]')
     }
     visit(){
-        super.visit('https://opensource-demo.orangehrmlive.com/')
+        super.visit('./')
     }
     loginToApp(username, password) {
         this.visit()
