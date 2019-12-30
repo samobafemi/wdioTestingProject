@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js",
-    "selenium-server": "selenium-standalone start"
+    "selenium-server": "selenium-standalone start",
+    "wdioconfig": "./node_modules/.bin/wdio config"
   },
   "keywords": [
     "selenium",
     "wdio",
     "javascript"
   ],
-
   "author": "so",
   "license": "ISC",
   "dependencies": {

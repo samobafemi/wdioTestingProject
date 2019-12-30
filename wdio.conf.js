@@ -1,5 +1,3 @@
-//const config = require('./lib/config')
-
 exports.config = {
     //
     // ====================
@@ -9,9 +7,6 @@ exports.config = {
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
     runner: 'local',
-    //
-    // Override default path ('/wd/hub') for chromedriver service.
-    path: '/',
     //
     // ==================
     // Specify Test Files
@@ -44,7 +39,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 5,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -93,7 +88,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://opensource-demo.orangehrmlive.com/',
+    baseUrl: "https://opensource-demo.orangehrmlive.com/",
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -109,7 +104,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: ['selenium-standalone'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -164,36 +159,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    before: function (capabilities, specs) {
-        browser.addCommand('getMetadata', function() {
-            return {
-                url: this.getUrl(),
-                title: this.getTitle()
-            }
-        })
-        browser.addCommand('waitAndClick', function(selector){
-            try {
-                $(selector).waitForExist()
-                $(selector).click()
-                
-            } catch (error) {
-                throw new Error(`Can not find the selector: ${selector}`)
-            }
-           
-        })
-
-        browser.addCommand('waitAndTypeText', function(selector, text){
-            try {
-                $(selector).waitForExist()
-                $(selector).setValue(text)
-                
-            } catch (error) {
-                throw new Error(`Can not find the selector: ${selector}`)
-            }
-           
-        })
-    },
-
+    // before: function (capabilities, specs) {
+    // },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name

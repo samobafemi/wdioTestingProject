@@ -30,25 +30,25 @@ class LoginPage extends BasePage {
     }
     loginToApp(username, password) {
         this.visit()
+        this.userName.waitForExist()
         this.userName.setValue(username)
+        this.password.waitForExist()
         this.password.setValue(password)
+        this.loginButton.waitForExist()
         this.loginButton.click()
     }
     logOutOfApp(username, password) {
-        this.visit()
-        this.userName.setValue(username)
-        this.password.setValue(password)
-        this.loginButton.click()
-       // browser.elementClick()
+        this.loginToApp(username, password)
+        this.pageWelcomeMessage.isClickable()
         this.pageWelcomeMessage.click()
         //$('//a[text()="Logout"]').isClickable().click()
         //browser.elementClick('[href="/index.php/auth/logout"]')
+        this.logOutButton.isClickable()
         this.logOutButton.click()
         // const button = $('#welcome')
         // button.waitForExist(4000)
-       
-
     }
+
     
 }
     

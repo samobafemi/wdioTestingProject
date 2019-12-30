@@ -53,3 +53,11 @@ don’t inadvertently get changed)
 tied to the HTML structure. For example, using simple parent-child relationships, :nth-child
 selectors or text based ones. It’s not perfect, but it gets the job done
 
+browser.waitUntil(function () {
+
+const signInExists = auth.$signIn.isExisting();
+
+const errorExists = auth.$errorMessages.isExisting();
+
+return !signInExists || errorExists;
+});
