@@ -4,11 +4,15 @@ const{expect} = require('chai')
 
 describe('OrangeHRM testing', function() {
 
-    // afterEach(function(){
-    //     LoginPage.close()
+    // beforeEach(function(){
+    //     browser.url('./')
     // })
 
     describe('Login Scenerios', function() {
+
+        beforeEach(function(){
+        browser.url('./')
+    })
 
     it('should allow you to log in using valid credentials',function(){
         LoginPage.loginToApp('Admin', 'admin123')
@@ -17,6 +21,7 @@ describe('OrangeHRM testing', function() {
 
     })
     it('should not allow you to log in using invalid credentials', function(){
+       // 
         LoginPage.openNewBrowser()
         LoginPage.loginToApp('Admin', 'admin120')
         expect(browser.getUrl()).to.contains('validateCredentials')
