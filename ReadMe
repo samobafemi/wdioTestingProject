@@ -41,3 +41,15 @@ $("[dropdown-menu] li:first-child");
 What if we wanted to get the second child? We can use The nth-child selector:
 $("[dropdown-menu] li:nth-child(2)"); nth-child takes a numeric value,
 which corresponds to the position in the HTML (it is not zeroindexed, so counting starts at 1).
+
+Chaining Selectors
+$('=Projects').$('span')
+$('ul').$$('li') or $$('ul li')
+
+When it comes to selecting elements, I like to follow this general guidelines:
+• If I can change the HTML, add a custom data attribute for testing purposes only (this way they
+don’t inadvertently get changed)
+• If I don’t have control of the HTML, come up with selectors that are specific, but not overly
+tied to the HTML structure. For example, using simple parent-child relationships, :nth-child
+selectors or text based ones. It’s not perfect, but it gets the job done
+

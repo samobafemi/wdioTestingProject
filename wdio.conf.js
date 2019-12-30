@@ -1,4 +1,4 @@
-const config = require('./lib/config')
+//const config = require('./lib/config')
 
 exports.config = {
     //
@@ -44,7 +44,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: config.maxInstances,
+    maxInstances: 5,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -54,9 +54,9 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: config.maxInstances,
+        maxInstances: 5,
         //
-        browserName: config.browser,
+        browserName: 'chrome',
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -69,7 +69,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: config.logLevel,
+    logLevel: 'info',
     //
     // Set specific log levels per logger
     // loggers:
@@ -87,16 +87,16 @@ exports.config = {
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    bail: config.bail,
+    bail: 0,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: config.baseUrl,
+    baseUrl: 'https://opensource-demo.orangehrmlive.com/',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: config.timeout,
+    waitforTimeout: 10000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -117,7 +117,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: config.framework,
+    framework: 'mocha',
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -125,7 +125,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: [config.reporters],
+    reporters: ['spec'],
  
     //
     // Options to be passed to Mocha.
@@ -193,6 +193,7 @@ exports.config = {
            
         })
     },
+
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name

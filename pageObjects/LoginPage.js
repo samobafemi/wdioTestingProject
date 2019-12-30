@@ -4,25 +4,25 @@ const dataHelpers = ('../lib/dataHelpers')
 
 class LoginPage extends BasePage {
 
-    getUserName() {
+    get userName() {
         return $('#txtUsername')
     }
-    getPassword() {
+    get password() {
         return $('#txtPassword')
     }
-    getLoginButton(){
+    get loginButton(){
         return $('#btnLogin')
     }
-    getPageUrl() {
+    get pageUrl() {
         return browser.getUrl()
     }
-    getPageErrorMessage() {
+    get pageErrorMessage() {
         return $('#spanMessage')
     }
-    getPageWelcomeMessage() {
+    get pageWelcomeMessage() {
         return $('#welcome')
     }
-    getLogOutButton() {
+    get logOutButton() {
         return $('[href="/index.php/auth/logout"]')
     }
     visit(){
@@ -30,17 +30,20 @@ class LoginPage extends BasePage {
     }
     loginToApp(username, password) {
         this.visit()
-        this.getUserName().setValue(username)
-        this.getPassword().setValue(password)
-        this.getLoginButton().click()
+        this.userName.setValue(username)
+        this.password.setValue(password)
+        this.loginButton.click()
     }
     logOutOfApp(username, password) {
         this.visit()
-        this.getUserName().setValue(username)
-        this.getPassword().setValue(password)
-        this.getLoginButton().click()
-        this.getPageWelcomeMessage().click()
-        this.getLogOutButton().click()
+        this.userName.setValue(username)
+        this.password.setValue(password)
+        this.loginButton.click()
+       // browser.elementClick()
+        this.pageWelcomeMessage.click()
+        //$('//a[text()="Logout"]').isClickable().click()
+        //browser.elementClick('[href="/index.php/auth/logout"]')
+        this.logOutButton.click()
         // const button = $('#welcome')
         // button.waitForExist(4000)
        

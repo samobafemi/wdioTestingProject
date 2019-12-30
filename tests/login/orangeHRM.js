@@ -8,7 +8,6 @@ describe('OrangeHRM testing', () => {
     //     LoginPage.close()
     // })
 
-    // 
     describe('Login Scenerios', function() {
 
     it('should allow you to log in using valid credentials',function(){
@@ -24,15 +23,15 @@ describe('OrangeHRM testing', () => {
         let password = 'admin1'
         LoginPage.openNewBrowser()
         LoginPage.loginToApp( username, password)
-        expect(LoginPage.getPageUrl()).to.contains('validateCredentials')
+        expect(browser.getUrl()).to.contains('validateCredentials')
 
     })
     it('should allow you to log in using valid credentials and then log out',function(){
         let username = 'Admin'
         let password = 'admin123'
         LoginPage.openNewBrowser()
-        LoginPage.logOutOfApp( username, password)
-        expect(LoginPage.getPageUrl()).to.contains('index.php/auth/login')
+        LoginPage.logOutOfApp(username, password)
+        expect(browser.getUrl()).to.contains('index.php/auth/login')
 
     })
     
