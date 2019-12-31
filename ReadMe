@@ -53,6 +53,8 @@ don’t inadvertently get changed)
 tied to the HTML structure. For example, using simple parent-child relationships, :nth-child
 selectors or text based ones. It’s not perfect, but it gets the job done
 
+Example of creating a custom command
+************************************
 browser.waitUntil(function () {
 
 const signInExists = auth.$signIn.isExisting();
@@ -61,3 +63,80 @@ const errorExists = auth.$errorMessages.isExisting();
 
 return !signInExists || errorExists;
 });
+
+Examples of requirements
+************************
+– Can access from the login page
+– Requires username, email, password - it('should require username, email and password for registration')
+– Checks that password isn’t too short (minimum is 8 characters) -it('should not accept short password')
+– username has already been taken - it('should reject already used username')
+– email has already been taken - it('should reject already used email')
+– Takes you to home page once you register - it('should go to home page once registered')
+
+it('should load page properly', function () {
+expect(browser.getUrl()).to.include('editor');
+expect(editor.$title.isExisting(), 'Title').to.be.true;
+expect(editor.$description.isExisting(), 'Description').to.be.true;
+expect(editor.$body.isExisting(), 'Body').to.be.true;
+expect(editor.$tags.isExisting(), 'Tags').to.be.true;
+expect(editor.$publish.isExisting(), 'Publish').to.be.true;
+})
+
+Base class Example
+******************
+
+const { URL } = require('url');
+class Generic {
+constructor (path) {
+this.path = path;
+// store the url by combining specific page path with WDIO base url
+// using the NodeJS URL utility
+this.url = new URL(path, browser.options.baseUrl);
+}
+load() {
+browser.url(this.path);
+}
+}
+module.exports = Generic;
+
+PageObject Example -Login Page
+******************************
+const Generic = require('./Generic.page');
+class Auth extends Generic {
+constructor () {
+super('./login')
+}
+get $email () { return $('input[type="email"]'); }
+get $password () { return $('input[type="password"]'); }
+get $signIn () { return $('button*=Sign in'); }
+get $errorMessages () { return $('.error-messages li'); }
+login ({ email, password }) {
+this.$email.setValue(email);
+this.$password.setValue(password);
+this.$signIn.click();
+// wait until either the sign in button is gone or an error has appeared
+browser.waitUntil(() => {
+2.5 Sharing Common Page Object Functionality 165
+const signInExists = this.$signIn.isExisting();
+const errorExists = this.$errorMessages.isExisting();
+return !signInExists || errorExists;
+}, null, 'The sign in button is not gone and an error never appeared');
+}
+}
+module.exports = new Auth();
+
+Another Example of Page Object 
+******************************
+
+const Generic = require('./Generic.page');
+class Editor extends Generic {
+constructor () {
+super('./editor')
+}
+get $title () { return $('[data-qa-id="editor-title"]'); }
+get $description () { return $('[data-qa-id="editor-description"]'); }
+get $body () { return $('[data-qa-id="editor-body"]'); }
+get $tags () { return $('[data-qa-id="editor-tags"]'); }
+get $publish () { return $('[data-qa-id="editor-publish"]'); }
+}
+module.exports = new Editor();
