@@ -140,3 +140,24 @@ get $tags () { return $('[data-qa-id="editor-tags"]'); }
 get $publish () { return $('[data-qa-id="editor-publish"]'); }
 }
 module.exports = new Editor();
+
+Example how to target the textare if the app is developed using a third party editor like mavon editor for vuejs
+*****************************************************************************************************************
+
+In our $body element reference, change our
+selector to point specifically to the textarea inside the element with the proper data-qa-id:
+get $body () { return $('[data-qa-id="editor-body"] textarea'); }
+
+Actions with keys
+*****************
+
+browser.keys('?') -This would be useful for testing if typing the ? in the browser
+triggered a “keyboard shortcuts” popup to appear).
+
+browser.keys('Enter')
+
+ To enter “basic auth” credentials.
+ *********************************** 
+ 
+ You need to pass in the credentials via your browser.url call:
+browser.url('http://username:password@example.com/');.

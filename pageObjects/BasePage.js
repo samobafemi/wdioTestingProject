@@ -23,8 +23,7 @@ class BasePage {
 	}
 	getPageUrl() {
 		return browser.getUrl();
-    }
-    
+	}
 }
 
 module.exports = BasePage;
